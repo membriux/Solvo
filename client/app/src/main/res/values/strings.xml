@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Solvo</string>
+    <string name="title_home">Home</string>
+    <string name="title_interests">Interests</string>
+    <string name="title_notifications">Investathons</string>
+</resources>
