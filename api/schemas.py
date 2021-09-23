@@ -15,16 +15,35 @@ class Item(ItemBase):
     class Config:
         orm_mode = True
 
+
+class ProblemBase(BaseModel):
+    title: str 
+    description: str
+
+class ProblemCreate(ProblemBase):
+    pass
+class Problem(BaseModel):
+    id: int 
+    owner_id: int
+    # TODO: add createdAt
+
+    class Config:
+        orm_mode = True
+
 class UserBase(BaseModel):
     email: str
 
 class UserCreate(UserBase):
+
     password: str
 
 class User(UserBase):
     id: int
     is_active: bool
+    
     items: List[Item] = []
+    problems: List[Problem] = []
 
     class Config:
         orm_mode = True
+

@@ -38,3 +38,10 @@ def create_user_item(db: Session, item: schemas.ItemCreate, user_id: int):
     db.commit()
     db.refresh(db_item)
     return db_item
+
+def create_user_problem(db: Session, problem: schemas.ProblemCreate, user_id: int):
+    db_problem = models.Problem(**problem.dict(), owner_id=user_id)
+    db.add(db_problem)
+    db.commit()
+    db.refresh(db_problem)
+    return db_problem
