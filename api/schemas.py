@@ -18,11 +18,11 @@ class Item(ItemBase):
 
 class ProblemBase(BaseModel):
     title: str 
-    description: str
+    description: Optional[str] = None
 
 class ProblemCreate(ProblemBase):
     pass
-class Problem(BaseModel):
+class Problem(ItemBase):
     id: int 
     owner_id: int
     # TODO: add createdAt
