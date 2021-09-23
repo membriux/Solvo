@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/navigation_interests"
-        android:name="pk.mohammadadnan.solvo.ui.interests.InterestsFragment"
+        android:name="pk.mohammadadnan.solvo.ui.InterestsFragment"
         android:label="@string/title_interests"
         tools:layout="@layout/fragment_interests" />
 
     <fragment
         android:id="@+id/navigation_investathons"
-        android:name="pk.mohammadadnan.solvo.ui.investathons.InvestathonsFragment"
+        android:name="pk.mohammadadnan.solvo.ui.InvestathonsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_investathons" />
 </navigation>
