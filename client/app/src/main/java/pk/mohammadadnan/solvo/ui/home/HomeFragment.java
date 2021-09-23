@@ -1,4 +1,4 @@
-package pk.mohammadadnan.solvo.ui;
+package pk.mohammadadnan.solvo.ui.home;
 
 import android.content.Context;
 import android.os.Bundle;
