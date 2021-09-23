@@ -12,7 +12,7 @@
         tools:context=".ui.InterestsFragment">
 
         <TextView
-            android:id="@+id/text_home"
+            android:id="@+id/title_txt_problem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -28,13 +28,13 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_interests"
             android:layout_width="0dp"
-            android:layout_height="1000dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_home" />
+            app:layout_constraintTop_toBottomOf="@+id/title_txt_problem" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>
