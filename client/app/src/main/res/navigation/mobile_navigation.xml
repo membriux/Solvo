@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="pk.mohammadadnan.solvo.ui.home.HomeFragment"
+        android:name="pk.mohammadadnan.solvo.ui.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_interests"
-        android:name="pk.mohammadadnan.solvo.ui.interests.InterestsFragment"
+        android:name="pk.mohammadadnan.solvo.ui.InterestsFragment"
         android:label="@string/title_interests"
         tools:layout="@layout/fragment_interests" />
 
     <fragment
         android:id="@+id/navigation_investathons"
-        android:name="pk.mohammadadnan.solvo.ui.investathons.InvestathonsFragment"
+        android:name="pk.mohammadadnan.solvo.ui.InvestathonsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_investathons" />
 </navigation>

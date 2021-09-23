@@ -1,4 +1,4 @@
-package pk.mohammadadnan.solvo.ui.home;
+package pk.mohammadadnan.solvo.ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,21 +12,18 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+
 import pk.mohammadadnan.solvo.R;
-import pk.mohammadadnan.solvo.databinding.FragmentHomeBinding;
+import pk.mohammadadnan.solvo.databinding.FragmentInterestsBinding;
 
-public class HomeFragment extends Fragment {
+public class InterestsFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
-    private int i = 0;
+    private FragmentInterestsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
 
-        View root = FragmentHomeBinding.inflate(inflater, container, false).getRoot();
-
+        View root = inflater.inflate(R.layout.fragment_interests, container, false);
 
         return root;
     }
