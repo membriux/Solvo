@@ -62,3 +62,8 @@ def create_problem_for_user(
     user_id: int, problem: schemas.ProblemCreate, db: Session = Depends(get_db)
 ):
     return crud.create_user_problem(db=db, problem=problem, user_id=1)
+
+@app.get("/problems/", response_model=List[schemas.Problem])
+def read_items(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    problems = crud.get_problems(db, skip=skip, limit=limit)
+    return problems 
