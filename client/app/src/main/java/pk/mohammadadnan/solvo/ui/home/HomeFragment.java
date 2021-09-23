@@ -18,6 +18,7 @@ import pk.mohammadadnan.solvo.databinding.FragmentHomeBinding;
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
+    private int i = 0;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
