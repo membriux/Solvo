@@ -12,6 +12,7 @@ class User(Base):
     is_active = Column(Boolean, default=True)
 
     items = relationship("Item", back_populates="owner")
+    problems = relationship("Problem", back_populates="owner")
 
 
 class Item(Base):
@@ -23,3 +24,16 @@ class Item(Base):
     owner_id = Column(Integer, ForeignKey("users.id"))
 
     owner = relationship("User", back_populates="items")
+
+class Problem(Base):
+    __tablename__ = "problems"
+
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String, index=True)
+    description = Column(String, index=True)
+    owner_id = Column(Integer, ForeignKey("users.id"))
+
+    owner = relationship("User", back_populates="problems")
+
+    # TODO: createdAt (date)
+    # TODO: solutions [solution] – similar to post comments
