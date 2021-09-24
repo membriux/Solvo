@@ -41,12 +41,12 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@+id/item_icon"
+                app:layout_constraintStart_toEndOf="@+id/item_interest"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Problem#1" />
 
             <TextView
-                android:id="@+id/item_measTwo_unit"
+                android:id="@+id/item_details"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -70,10 +70,10 @@
                 android:text="Today, 8:00pm"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/item_measTwo_unit" />
+                app:layout_constraintTop_toBottomOf="@+id/item_details" />
 
             <ToggleButton
-                android:id="@+id/item_icon"
+                android:id="@+id/item_interest"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="8dp"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.AddProblemFragment" >
+    tools:context=".ui.fragments.AddProblemFragment" >
 
     <TextView
         android:id="@+id/title_txt_add"
@@ -47,7 +47,7 @@
         android:background="@drawable/transparent"
         android:ems="10"
         android:gravity="clip_vertical|start|top"
-        android:hint="Details of the problem here"
+        android:hint="Enter the description here"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toTopOf="@+id/post_btn"
         app:layout_constraintEnd_toEndOf="parent"
