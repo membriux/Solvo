@@ -4,27 +4,32 @@ import com.google.gson.annotations.SerializedName;
 
 public class Problem {
 
-    @SerializedName("owner_id")
-    private Integer owner_id;
+    @SerializedName("interest")
+    private Integer interest;
     @SerializedName("id")
     private Integer id;
     @SerializedName("title")
     private String title;
     @SerializedName("description")
     private String description;
+    @SerializedName("createdAt")
+    private Long createdAt;
 
-    public Problem(Integer owner_id, Integer id, String title, String description) {
-        this.owner_id = owner_id;
+    public Problem(Integer interest, Integer id, String title, String description, Long createdAt) {
+        this.interest = interest;
         this.id = id;
         this.title = title;
         this.description = description;
+        this.createdAt = createdAt;
     }
 
-    public Integer getOwner_id() {
-        return owner_id;
+    public Integer getInterest() {
+        return interest;
     }
 
-    public void setOwner_id(Integer albumId) { this.owner_id = owner_id; }
+    public void setInterest(Integer interest) {
+        this.interest = interest;
+    }
 
     public Integer getId() {
         return id;
@@ -45,4 +50,12 @@ public class Problem {
     public String getDescription() { return description; }
 
     public void setDescription(String description) { this.description = description; }
+
+    public Long getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Long createdAt) {
+        this.createdAt = createdAt;
+    }
 }
