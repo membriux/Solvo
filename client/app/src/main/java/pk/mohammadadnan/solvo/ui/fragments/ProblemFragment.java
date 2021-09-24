@@ -62,28 +62,32 @@ public class ProblemFragment extends Fragment implements ProblemsAdapter.Interes
                 1,
                 1,
                 "Solution#1",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov"
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
+                "date1"
         ));
 
         problemArrayList.add(new Problem(
                 2,
                 2,
                 "Solution#2",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov"
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
+                "date1"
         ));
 
         problemArrayList.add(new Problem(
                 3,
                 3,
                 "Solution#3",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov"
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
+                "date1"
         ));
 
         problemArrayList.add(new Problem(
                 4,
                 4,
                 "Solution#4",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov"
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
+                "date1"
         ));
 
         adapter = new ProblemsAdapter(getActivity(),problemArrayList);
