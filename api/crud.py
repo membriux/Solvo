@@ -39,8 +39,15 @@ def get_problems(db: Session, skip: int = 0, limit: int = 100):
 
 
 def create_problem_solution(db: Session, solution: schemas.SolutionCreate, user_id: int, problem_id: int):
-    db_solution = models.Solution(**solution.dict(), owner_id=user_id, problem_id=problem_id)
+    db_solution = models.Solution(
+        **solution.dict(), owner_id=user_id, problem_id=problem_id)
     db.add(db_solution)
     db.commit()
     db.refresh(db_solution)
-    return db_solution 
+    return db_solution
+
+
+def get_problem_solutions(db: Session, problem_id: int, skip: int = 0, limit: int = 100):
+    return (db.query(models.Solution)
+            .filter(models.Solution.problem_id == problem_id)
+            .offset(skip).limit(limit).all())

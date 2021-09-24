@@ -57,8 +57,13 @@ def read_problems(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)
     problems = crud.get_problems(db, skip=skip, limit=limit)
     return problems 
 
-@app.post("/problems/{problem_id}/solutions/", response_model=schemas.Solution)
+@app.post("/solutions/{problem_id}/", response_model=schemas.Solution)
 def create_solution_for_problem(
     user_id: int, problem_id: int, solution: schemas.SolutionCreate, db: Session = Depends(get_db)
 ):
     return crud.create_problem_solution(db=db, solution=solution, problem_id=problem_id, user_id=user_id)
+
+@app.get("/solutions/{problem_id}", response_model=List[schemas.Solution])
+def read_problem_solutions(problem_id: int, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    solutions = crud.get_problem_solutions(db, problem_id=problem_id, skip=skip, limit=limit)
+    return solutions
