@@ -1,5 +1,6 @@
 from typing import List, Optional
 
+from datetime import datetime
 from pydantic import BaseModel
 
 class SolutionBase(BaseModel):
@@ -10,7 +11,7 @@ class Solution(SolutionCreate):
     id: int
     owner_id: int
     problem_id: int
-    # TODO: add createdAt
+    createdAt: datetime
 
     class Config:
         orm_mode = True
@@ -23,8 +24,8 @@ class ProblemCreate(ProblemBase):
 class Problem(BaseModel):
     id: int 
     owner_id: int
-    # TODO: add createdAt
-    
+    createdAt: datetime
+
     solutions: List[Solution] = []
 
     class Config:

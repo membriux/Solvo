@@ -1,5 +1,8 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime
+from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
+
+from datetime import datetime 
 
 from database import Base
 
@@ -22,6 +25,7 @@ class Problem(Base):
     description = Column(String, index=True)
     owner_id = Column(Integer, ForeignKey("users.id"))
     solutions = relationship("Solution", back_populates="problem")
+    createdAt = Column(DateTime(timezone=True), server_default=func.now())
 
     owner = relationship("User", back_populates="problems")
 
@@ -35,6 +39,7 @@ class Solution(Base):
     description = Column(String, index=True)
     owner_id = Column(Integer, ForeignKey("users.id"))
     problem_id = Column(Integer, ForeignKey("problems.id"))
+    createdAt = Column(DateTime(timezone=True), server_default=func.now())
 
     owner = relationship("User", back_populates="solutions")
     problem = relationship("Problem", back_populates="solutions")
