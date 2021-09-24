@@ -2,19 +2,6 @@ from typing import List, Optional
 
 from pydantic import BaseModel
 
-class ItemBase(BaseModel):
-    title: str
-    description: Optional[str] = None
-
-class ItemCreate(ItemBase):
-    pass
-
-class Item(ItemBase):
-    id: int
-    owner_id: int
-    class Config:
-        orm_mode = True
-
 class SolutionBase(BaseModel):
     description: str
 class SolutionCreate(SolutionBase):
@@ -33,7 +20,7 @@ class ProblemBase(BaseModel):
 
 class ProblemCreate(ProblemBase):
     pass
-class Problem(ItemBase):
+class Problem(BaseModel):
     id: int 
     owner_id: int
     # TODO: add createdAt
@@ -53,7 +40,6 @@ class User(UserBase):
     id: int
     is_active: bool
     
-    items: List[Item] = []
     problems: List[Problem] = []
 
     class Config:
