@@ -5,8 +5,11 @@ services:
     container_name: api
     restart: always
     build: api
+    volumes:
+      - ./api:/api
     ports:
       - 8000:8000
+    
   # nginx:
   #   container_name: nginx
   #   image: nginx:alpine
