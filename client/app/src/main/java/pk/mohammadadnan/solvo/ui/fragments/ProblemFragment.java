@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -15,11 +16,15 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+
 import pk.mohammadadnan.solvo.R;
 import pk.mohammadadnan.solvo.UIStateChangeListener;
+import pk.mohammadadnan.solvo.models.Problem;
+import pk.mohammadadnan.solvo.ui.adapters.ProblemsAdapter;
 
 
-public class ProblemFragment extends Fragment {
+public class ProblemFragment extends Fragment implements ProblemsAdapter.InterestListener{
 
     private FloatingActionButton fab;
 
@@ -27,6 +32,9 @@ public class ProblemFragment extends Fragment {
     private RecyclerView recyclerView;
 
     private UIStateChangeListener mUIStateChangeListener;
+
+    private ProblemsAdapter adapter;
+    private ArrayList<Problem> problemArrayList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,6 +57,39 @@ public class ProblemFragment extends Fragment {
             titleTxt.setText(args.getTitle());
             detailsTxt.setText(args.getDetails());
         }
+
+        problemArrayList.add(new Problem(
+                1,
+                1,
+                "Solution#1",
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov"
+        ));
+
+        problemArrayList.add(new Problem(
+                2,
+                2,
+                "Solution#2",
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov"
+        ));
+
+        problemArrayList.add(new Problem(
+                3,
+                3,
+                "Solution#3",
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov"
+        ));
+
+        problemArrayList.add(new Problem(
+                4,
+                4,
+                "Solution#4",
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov"
+        ));
+
+        adapter = new ProblemsAdapter(getActivity(),problemArrayList);
+        adapter.setInterestListener(this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         return root;
     }
@@ -74,5 +115,10 @@ public class ProblemFragment extends Fragment {
     public void onDetach() {
         mUIStateChangeListener = null;
         super.onDetach();
+    }
+
+    @Override
+    public void onInterest(View view, int position) {
+
     }
 }
