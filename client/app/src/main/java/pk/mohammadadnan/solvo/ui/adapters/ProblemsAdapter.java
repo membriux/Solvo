@@ -43,8 +43,8 @@ public class ProblemsAdapter extends RecyclerView.Adapter<ProblemsAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.titleTxt.setText(mData.get(position).getTitle());
         holder.detailsTxt.setText(mData.get(position).getDescription());
-//        holder.timeTxt.setText(Utils.getString(mData.get(position).getTime()));
-//        holder.countTxt.setText(Utils.getString(mData.get(position).getCount()));
+        holder.timeTxt.setText(Utils.getString(mData.get(position).getCreatedAt()));
+        holder.countTxt.setText(String.valueOf(mData.get(position).getInterest()));
     }
 
     // total number of cells

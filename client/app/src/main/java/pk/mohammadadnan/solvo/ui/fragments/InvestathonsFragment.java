@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,6 +23,7 @@ import pk.mohammadadnan.solvo.ui.adapters.ProblemsAdapter;
 public class InvestathonsFragment extends Fragment implements ProblemsAdapter.ClickListener, ProblemsAdapter.InterestListener{
 
     private RecyclerView recyclerView;
+    ConstraintLayout progressLayout;
 
     private UIStateChangeListener mUIStateChangeListener;
 
@@ -34,33 +36,38 @@ public class InvestathonsFragment extends Fragment implements ProblemsAdapter.Cl
         View root = inflater.inflate(R.layout.fragment_investathons, container, false);
 
         recyclerView = root.findViewById(R.id.recycler_investathons);
+        progressLayout = root.findViewById(R.id.progress_layout_investathons);
 
         investathonsArrayList.add(new Problem(
                 1,
                 1,
                 "Investathon#1",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov"
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
+                System.currentTimeMillis()
         ));
 
         investathonsArrayList.add(new Problem(
                 2,
                 2,
                 "Investathon#2",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov"
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
+                System.currentTimeMillis()
         ));
 
         investathonsArrayList.add(new Problem(
                 3,
                 3,
                 "Investathon#3",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov"
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
+                System.currentTimeMillis()
         ));
 
         investathonsArrayList.add(new Problem(
                 4,
                 4,
                 "Investathon#4",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov"
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
+                System.currentTimeMillis()
         ));
 
         adapter = new ProblemsAdapter(getActivity(), investathonsArrayList);
