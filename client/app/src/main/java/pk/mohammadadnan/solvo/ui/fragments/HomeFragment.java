@@ -2,9 +2,11 @@ package pk.mohammadadnan.solvo.ui.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -16,13 +18,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import pk.mohammadadnan.solvo.MainActivity;
 import pk.mohammadadnan.solvo.R;
 import pk.mohammadadnan.solvo.UIStateChangeListener;
 import pk.mohammadadnan.solvo.models.Problem;
+import pk.mohammadadnan.solvo.network.APIClient;
+import pk.mohammadadnan.solvo.network.GetDataService;
 import pk.mohammadadnan.solvo.ui.adapters.ProblemsAdapter;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeFragment extends Fragment implements ProblemsAdapter.ClickListener, ProblemsAdapter.InterestListener{
+
+    public static final String TAG = "HomeFragment ------->";
 
     FloatingActionButton fab;
     RecyclerView recyclerView;
@@ -32,6 +43,8 @@ public class HomeFragment extends Fragment implements ProblemsAdapter.ClickListe
 
     private ProblemsAdapter adapter;
     private ArrayList<Problem> problemArrayList = new ArrayList<>();
+
+    private GetDataService service;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -47,43 +60,11 @@ public class HomeFragment extends Fragment implements ProblemsAdapter.ClickListe
             Navigation.findNavController(view).navigate(action);
         });
 
-        problemArrayList.add(new Problem(
-                1,
-                1,
-                "Problem#1",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
-                System.currentTimeMillis()
-        ));
+//        addDummyData();
 
-        problemArrayList.add(new Problem(
-                2,
-                2,
-                "Problem#2",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
-                System.currentTimeMillis()
-        ));
+        progressLayout.setVisibility(View.GONE);
 
-        problemArrayList.add(new Problem(
-                3,
-                3,
-                "Problem#3",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
-                System.currentTimeMillis()
-        ));
-
-        problemArrayList.add(new Problem(
-                4,
-                4,
-                "Problem#4",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
-                System.currentTimeMillis()
-        ));
-
-        adapter = new ProblemsAdapter(getActivity(),problemArrayList);
-        adapter.setClickListener(this);
-        adapter.setInterestListener(this);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        service = APIClient.getRetrofitInstance().create(GetDataService.class);
 
         return root;
     }
@@ -93,6 +74,8 @@ public class HomeFragment extends Fragment implements ProblemsAdapter.ClickListe
         super.onResume();
         mUIStateChangeListener.onTopBarStateChange(true);
         mUIStateChangeListener.onBottomNavStateChange(true);
+
+        getAllProblemsRequest();
     }
 
     @Override
@@ -124,6 +107,79 @@ public class HomeFragment extends Fragment implements ProblemsAdapter.ClickListe
 
     @Override
     public void onInterest(View view, int position) {
+
+    }
+
+    private void addDummyData(){
+        problemArrayList.add(new Problem(
+                1,
+                1,
+                "Problem#1",
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
+                System.currentTimeMillis()
+        ));
+
+        problemArrayList.add(new Problem(
+                2,
+                2,
+                "Problem#2",
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
+                System.currentTimeMillis()
+        ));
+
+        problemArrayList.add(new Problem(
+                3,
+                3,
+                "Problem#3",
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
+                System.currentTimeMillis()
+        ));
+
+        problemArrayList.add(new Problem(
+                4,
+                4,
+                "Problem#4",
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
+                System.currentTimeMillis()
+        ));
+    }
+
+    private void getAllProblemsRequest(){
+
+        progressLayout.setVisibility(View.VISIBLE);
+
+        Call<List<Problem>> call = service.getAllProblems();
+        call.enqueue(new Callback<List<Problem>>() {
+
+            @Override
+            public void onResponse(Call<List<Problem>> call, Response<List<Problem>> response) {
+
+                progressLayout.setVisibility(View.GONE);
+
+                Log.e(TAG,"Got Response");
+                if (response.body() != null) {
+                    problemArrayList = new ArrayList<>(response.body());
+                    adapter = new ProblemsAdapter(getActivity(),problemArrayList);
+                    adapter.setClickListener(HomeFragment.this);
+                    adapter.setInterestListener(HomeFragment.this);
+                    recyclerView.setAdapter(adapter);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    Log.e(TAG,"Problems Found");
+                }else{
+                    Log.e(TAG,"No Problems Found");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Problem>> call, Throwable t) {
+
+                progressLayout.setVisibility(View.GONE);
+
+                Toast.makeText(getActivity(),
+                        "Error getting list of Problems",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 }
