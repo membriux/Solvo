@@ -10,8 +10,6 @@ import retrofit2.http.GET;
 
 
 public interface GetDataService {
-    @GET("/photos")
-    Call<List<Post>> getAllPhotos();
 
     @GET("/problems")
     Call<List<Problem>> getAllProblems();
