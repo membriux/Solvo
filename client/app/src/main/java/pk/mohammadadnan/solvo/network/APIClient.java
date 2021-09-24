@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class APIClient {
 
    private static Retrofit retrofit;
-   private static final String BASE_URL = "https://jsonplaceholder.typicode.com";
+   private static final String BASE_URL = "http://localhost:8000";
 
    public static Retrofit getRetrofitInstance() {
       if (retrofit == null) {
