@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment implements ProblemsAdapter.ClickListe
             Navigation.findNavController(view).navigate(action);
         });
 
-//        addDummyData();
+        refreshRecycler();
 
         progressLayout.setVisibility(View.GONE);
 
@@ -110,38 +110,12 @@ public class HomeFragment extends Fragment implements ProblemsAdapter.ClickListe
 
     }
 
-    private void addDummyData(){
-        problemArrayList.add(new Problem(
-                1,
-                1,
-                "Problem#1",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
-                System.currentTimeMillis()
-        ));
-
-        problemArrayList.add(new Problem(
-                2,
-                2,
-                "Problem#2",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
-                System.currentTimeMillis()
-        ));
-
-        problemArrayList.add(new Problem(
-                3,
-                3,
-                "Problem#3",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
-                System.currentTimeMillis()
-        ));
-
-        problemArrayList.add(new Problem(
-                4,
-                4,
-                "Problem#4",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
-                System.currentTimeMillis()
-        ));
+    private void refreshRecycler(){
+        adapter = new ProblemsAdapter(getActivity(),problemArrayList);
+        adapter.setClickListener(HomeFragment.this);
+        adapter.setInterestListener(HomeFragment.this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
     private void getAllProblemsRequest(){
@@ -152,18 +126,16 @@ public class HomeFragment extends Fragment implements ProblemsAdapter.ClickListe
         call.enqueue(new Callback<List<Problem>>() {
 
             @Override
-            public void onResponse(Call<List<Problem>> call, Response<List<Problem>> response) {
+            public void onResponse(@NonNull Call<List<Problem>> call, @NonNull Response<List<Problem>> response) {
 
                 progressLayout.setVisibility(View.GONE);
 
                 Log.e(TAG,"Got Response");
                 if (response.body() != null) {
+
                     problemArrayList = new ArrayList<>(response.body());
-                    adapter = new ProblemsAdapter(getActivity(),problemArrayList);
-                    adapter.setClickListener(HomeFragment.this);
-                    adapter.setInterestListener(HomeFragment.this);
-                    recyclerView.setAdapter(adapter);
-                    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    refreshRecycler();
+
                     Log.e(TAG,"Problems Found");
                 }else{
                     Log.e(TAG,"No Problems Found");
@@ -171,13 +143,13 @@ public class HomeFragment extends Fragment implements ProblemsAdapter.ClickListe
             }
 
             @Override
-            public void onFailure(Call<List<Problem>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<Problem>> call, @NonNull Throwable t) {
 
                 progressLayout.setVisibility(View.GONE);
 
                 Toast.makeText(getActivity(),
-                        "Error getting list of Problems",
-                        Toast.LENGTH_SHORT).show();
+                        "Error: "+t.getMessage(),
+                        Toast.LENGTH_LONG).show();
             }
         });
 

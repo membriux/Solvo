@@ -10,10 +10,10 @@ import retrofit2.http.GET;
 
 public interface GetDataService {
 
-    @GET("/problems")
+    @GET("problems")
     Call<List<Problem>> getAllProblems();
 
-    @GET("/user/user1")
+    @GET("user/user1")
     Call<User> getUser();
 
 }
