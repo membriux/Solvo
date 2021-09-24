@@ -22,13 +22,21 @@
         android:id="@+id/navigation_interests"
         android:name="pk.mohammadadnan.solvo.ui.fragments.InterestsFragment"
         android:label="@string/title_interests"
-        tools:layout="@layout/fragment_interests" />
+        tools:layout="@layout/fragment_interests" >
+        <action
+            android:id="@+id/interest_to_problem"
+            app:destination="@id/problemFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_investathons"
         android:name="pk.mohammadadnan.solvo.ui.fragments.InvestathonsFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_investathons" />
+        tools:layout="@layout/fragment_investathons" >
+        <action
+            android:id="@+id/investathon_to_problem"
+            app:destination="@id/problemFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addProblemFragment"
         android:name="pk.mohammadadnan.solvo.ui.fragments.AddProblemFragment"

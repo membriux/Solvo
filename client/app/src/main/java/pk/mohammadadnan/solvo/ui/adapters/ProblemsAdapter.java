@@ -44,6 +44,7 @@ public class ProblemsAdapter extends RecyclerView.Adapter<ProblemsAdapter.ViewHo
         holder.titleTxt.setText(mData.get(position).getTitle());
         holder.detailsTxt.setText(mData.get(position).getDescription());
 //        holder.timeTxt.setText(Utils.getString(mData.get(position).getTime()));
+//        holder.countTxt.setText(Utils.getString(mData.get(position).getCount()));
     }
 
     // total number of cells
@@ -58,7 +59,7 @@ public class ProblemsAdapter extends RecyclerView.Adapter<ProblemsAdapter.ViewHo
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView titleTxt, detailsTxt,timeTxt;
+        TextView titleTxt, detailsTxt,timeTxt,countTxt;
         ToggleButton interestBtn;
         View view;
 
@@ -67,6 +68,7 @@ public class ProblemsAdapter extends RecyclerView.Adapter<ProblemsAdapter.ViewHo
             titleTxt = itemView.findViewById(R.id.item_title);
             detailsTxt = itemView.findViewById(R.id.item_details);
             timeTxt = itemView.findViewById(R.id.item_time);
+            countTxt = itemView.findViewById(R.id.item_count);
             interestBtn = itemView.findViewById(R.id.item_interest);
 
             interestBtn.setOnClickListener(view -> {

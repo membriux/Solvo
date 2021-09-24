@@ -3,6 +3,8 @@ package pk.mohammadadnan.solvo;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements UIStateChangeList
 
     public static BottomNavigationView navView;
     private ConstraintLayout searchTopBar,returnTopBar;
+    private ImageButton returnBtn;
 
     private List<Problem> dataList;
     private Context context;
@@ -78,6 +81,11 @@ public class MainActivity extends AppCompatActivity implements UIStateChangeList
         navView = findViewById(R.id.nav_view);
         searchTopBar = findViewById(R.id.search_topbar);
         returnTopBar = findViewById(R.id.return_topbar);
+        returnBtn = findViewById(R.id.return_img);
+
+        returnBtn.setOnClickListener(view -> {
+            Navigation.findNavController(this,R.id.nav_host_fragment_activity_main).popBackStack();
+        });
     }
 
     private void getAllProblemsRequest(){
