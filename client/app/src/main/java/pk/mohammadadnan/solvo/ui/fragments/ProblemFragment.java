@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 import pk.mohammadadnan.solvo.R;
 import pk.mohammadadnan.solvo.UIStateChangeListener;
-import pk.mohammadadnan.solvo.models.Problem;
+import pk.mohammadadnan.solvo.models.Problems;
 import pk.mohammadadnan.solvo.ui.adapters.ProblemsAdapter;
 
 
@@ -34,7 +34,7 @@ public class ProblemFragment extends Fragment implements ProblemsAdapter.Interes
     private UIStateChangeListener mUIStateChangeListener;
 
     private ProblemsAdapter adapter;
-    private ArrayList<Problem> problemArrayList = new ArrayList<>();
+    private ArrayList<Problems.Problem> problemArrayList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,37 +58,7 @@ public class ProblemFragment extends Fragment implements ProblemsAdapter.Interes
             detailsTxt.setText(args.getDetails());
         }
 
-        problemArrayList.add(new Problem(
-                1,
-                1,
-                "Solution#1",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
-                System.currentTimeMillis()
-        ));
-
-        problemArrayList.add(new Problem(
-                2,
-                2,
-                "Solution#2",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
-                System.currentTimeMillis()
-        ));
-
-        problemArrayList.add(new Problem(
-                3,
-                3,
-                "Solution#3",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
-                System.currentTimeMillis()
-        ));
-
-        problemArrayList.add(new Problem(
-                4,
-                4,
-                "Solution#4",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
-                System.currentTimeMillis()
-        ));
+        addDummyData();
 
         adapter = new ProblemsAdapter(getActivity(),problemArrayList);
         adapter.setInterestListener(this);
@@ -124,5 +94,39 @@ public class ProblemFragment extends Fragment implements ProblemsAdapter.Interes
     @Override
     public void onInterest(View view, int position) {
 
+    }
+
+    public void addDummyData(){
+        problemArrayList.add(new Problems.Problem(
+                1,
+                1,
+                "Solution#1",
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
+                System.currentTimeMillis()
+        ));
+
+        problemArrayList.add(new Problems.Problem(
+                2,
+                2,
+                "Solution#2",
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
+                System.currentTimeMillis()
+        ));
+
+        problemArrayList.add(new Problems.Problem(
+                3,
+                3,
+                "Solution#3",
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
+                System.currentTimeMillis()
+        ));
+
+        problemArrayList.add(new Problems.Problem(
+                4,
+                4,
+                "Solution#4",
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
+                System.currentTimeMillis()
+        ));
     }
 }
