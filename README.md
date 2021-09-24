@@ -1,3 +1,4 @@
+##### tags: `android` `FastAPI` `docker` `containers` `solutions`
 
 # Solvo
 
