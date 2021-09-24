@@ -3,7 +3,7 @@
     package="pk.mohammadadnan.solvo">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -25,6 +25,9 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <service
+            android:exported="false"
+            android:name="com.novoda.merlin.MerlinService" />
     </application>
 
 </manifest>
