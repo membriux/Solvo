@@ -46,7 +46,7 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
     return db_user
 
 
-@app.post("/users/{user_id}/problems/", response_model=schemas.Problem)
+@app.post("/problems/{user_id}", response_model=schemas.Problem)
 def create_problem_for_user(
     user_id: int, problem: schemas.ProblemCreate, db: Session = Depends(get_db)
 ):
