@@ -1,6 +1,8 @@
 from sqlalchemy.orm import Session
 
-import models, schemas
+import models
+import schemas
+
 
 def get_user(db: Session, user_id: int):
     return db.query(models.User).filter(models.User.id == user_id).first()
@@ -35,6 +37,7 @@ def create_user_item(db: Session, item: schemas.ItemCreate, user_id: int):
     db.refresh(db_item)
     return db_item
 
+
 def create_user_problem(db: Session, problem: schemas.ProblemCreate, user_id: int):
     db_problem = models.Problem(**problem.dict(), owner_id=user_id)
     db.add(db_problem)
@@ -42,5 +45,14 @@ def create_user_problem(db: Session, problem: schemas.ProblemCreate, user_id: in
     db.refresh(db_problem)
     return db_problem
 
+
 def get_problems(db: Session, skip: int = 0, limit: int = 100):
     return db.query(models.Problem).offset(skip).limit(limit).all()
+
+
+def create_problem_solution(db: Session, solution: schemas.SolutionCreate, user_id: int, problem_id: int):
+    db_solution = models.Solution(**solution.dict(), owner_id=user_id, problem_id=problem_id)
+    db.add(db_solution)
+    db.commit()
+    db.refresh(db_solution)
+    return db_solution 

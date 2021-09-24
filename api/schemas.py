@@ -15,7 +15,18 @@ class Item(ItemBase):
     class Config:
         orm_mode = True
 
+class SolutionBase(BaseModel):
+    description: str
+class SolutionCreate(SolutionBase):
+    pass
+class Solution(SolutionCreate):
+    id: int
+    owner_id: int
+    problem_id: int
+    # TODO: add createdAt
 
+    class Config:
+        orm_mode = True
 class ProblemBase(BaseModel):
     title: str 
     description: Optional[str] = None
@@ -26,6 +37,8 @@ class Problem(ItemBase):
     id: int 
     owner_id: int
     # TODO: add createdAt
+    
+    solutions: List[Solution] = []
 
     class Config:
         orm_mode = True
@@ -34,7 +47,6 @@ class UserBase(BaseModel):
     email: str
 
 class UserCreate(UserBase):
-
     password: str
 
 class User(UserBase):
@@ -46,4 +58,3 @@ class User(UserBase):
 
     class Config:
         orm_mode = True
-
