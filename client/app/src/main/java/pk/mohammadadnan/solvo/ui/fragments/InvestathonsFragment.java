@@ -23,7 +23,7 @@ import pk.mohammadadnan.solvo.ui.adapters.ProblemsAdapter;
 public class InvestathonsFragment extends Fragment implements ProblemsAdapter.ClickListener, ProblemsAdapter.InterestListener{
 
     private RecyclerView recyclerView;
-    ConstraintLayout progressLayout;
+    ConstraintLayout progressLayout,emptyLayout;
 
     private UIStateChangeListener mUIStateChangeListener;
 
@@ -37,6 +37,9 @@ public class InvestathonsFragment extends Fragment implements ProblemsAdapter.Cl
 
         recyclerView = root.findViewById(R.id.recycler_investathons);
         progressLayout = root.findViewById(R.id.progress_layout_investathons);
+        emptyLayout = root.findViewById(R.id.empty_layout_investathons);
+
+        progressLayout.setVisibility(View.GONE);
 
         investathonsArrayList.add(new Problem(
                 1,
@@ -75,6 +78,12 @@ public class InvestathonsFragment extends Fragment implements ProblemsAdapter.Cl
         adapter.setInterestListener(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        if(investathonsArrayList.size() != 0){
+            emptyLayout.setVisibility(View.GONE);
+        }else{
+            emptyLayout.setVisibility(View.VISIBLE);
+        }
 
         return root;
     }

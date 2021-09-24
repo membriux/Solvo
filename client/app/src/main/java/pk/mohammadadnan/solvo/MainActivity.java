@@ -39,8 +39,6 @@ public class MainActivity extends AppCompatActivity implements UIStateChangeList
 
     private boolean isJustCreated = true;
 
-    private GetDataService service;
-
     protected Merlin merlin;
 
     @Override
@@ -91,13 +89,6 @@ public class MainActivity extends AppCompatActivity implements UIStateChangeList
             }
         });
 
-        /* ––––- ––––– */
-        /* ––––- API Client ––––– */
-        /* ––––- ––––– */
-        /*Create handle for the RetrofitInstance interface*/
-        service = APIClient.getRetrofitInstance().create(GetDataService.class);
-        getAllProblemsRequest();
-
     }
 
     @Override
@@ -141,33 +132,6 @@ public class MainActivity extends AppCompatActivity implements UIStateChangeList
         returnBtn.setOnClickListener(view -> {
             Navigation.findNavController(this,R.id.nav_host_fragment_activity_main).popBackStack();
         });
-    }
-
-    private void getAllProblemsRequest(){
-
-        Call<List<Problem>> call = service.getAllProblems();
-        call.enqueue(new Callback<List<Problem>>() {
-
-            @Override
-            public void onResponse(Call<List<Problem>> call, Response<List<Problem>> response) {
-/*
-                progressDialog.dismiss();
-                generateDataList(response.body());
-*/
-                System.out.println("Got Problems");
-                System.out.println(response.body());
-
-            }
-
-            @Override
-            public void onFailure(Call<List<Problem>> call, Throwable t) {
-//                progressDialog.dismiss();
-                Toast.makeText(MainActivity.this,
-                        "Error getting list of Problems",
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-
     }
 
 }
