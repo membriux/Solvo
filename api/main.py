@@ -23,6 +23,7 @@ def get_db():
 def hello():
     return {"Status": "up"}
 
+
 @app.post("/users/", response_model=schemas.User)
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     db_user = crud.get_user_by_email(db, email=user.email)
@@ -45,25 +46,24 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
     return db_user
 
 
-@app.post("/users/{user_id}/items/", response_model=schemas.Item)
-def create_item_for_user(
-    user_id: int, item: schemas.ItemCreate, db: Session = Depends(get_db)
-):
-    return crud.create_user_item(db=db, item=item, user_id=user_id)
-
-
-@app.get("/items/", response_model=List[schemas.Item])
-def read_items(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    items = crud.get_items(db, skip=skip, limit=limit)
-    return items
-
-@app.post("/users/{user_id}/problems/", response_model=schemas.Problem)
+@app.post("/problems/{user_id}", response_model=schemas.Problem)
 def create_problem_for_user(
     user_id: int, problem: schemas.ProblemCreate, db: Session = Depends(get_db)
 ):
     return crud.create_user_problem(db=db, problem=problem, user_id=1)
 
 @app.get("/problems/", response_model=List[schemas.Problem])
-def read_items(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+def read_problems(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     problems = crud.get_problems(db, skip=skip, limit=limit)
     return problems 
+
+@app.post("/solutions/{problem_id}/", response_model=schemas.Solution)
+def create_solution_for_problem(
+    user_id: int, problem_id: int, solution: schemas.SolutionCreate, db: Session = Depends(get_db)
+):
+    return crud.create_problem_solution(db=db, solution=solution, problem_id=problem_id, user_id=user_id)
+
+@app.get("/solutions/{problem_id}", response_model=List[schemas.Solution])
+def read_problem_solutions(problem_id: int, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    solutions = crud.get_problem_solutions(db, problem_id=problem_id, skip=skip, limit=limit)
+    return solutions
