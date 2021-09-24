@@ -148,35 +148,35 @@ public class HomeFragment extends Fragment implements ProblemsAdapter.ClickListe
 
         progressLayout.setVisibility(View.VISIBLE);
 
-//        Call<Problems> call = service.getAllProblems();
-//        call.enqueue(new Callback<Problems>() {
-//            @Override
-//            public void onResponse(@NonNull Call<Problems> call, @NonNull Response<Problems> response) {
-//                progressLayout.setVisibility(View.GONE);
-//
-//                Log.e(TAG,"Got Response");
-//                if (response.body() != null) {
-//
-//                    //problemArrayList = new ArrayList<>(response.body().getProblems());
-//                    Log.e(TAG, "RESPONSE FROM API" + response.body());
-////                    refreshRecycler();
-//
-//                    Log.e(TAG,"Problems Found");
-//                }else{
-//                    Log.e(TAG,"No Problems Found");
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(@NonNull Call<Problems> call, @NonNull Throwable t) {
-//
-//                progressLayout.setVisibility(View.GONE);
-//                Log.e(TAG, "ERROR WITH NETWORK REQUEST:" + t.getMessage());
-//                Toast.makeText(getActivity(),
-//                        "Error: "+t.getMessage(),
-//                        Toast.LENGTH_LONG).show();
-//            }
-//        });
+        Call<Problems> call = service.getAllProblems();
+        call.enqueue(new Callback<Problems>() {
+            @Override
+            public void onResponse(@NonNull Call<Problems> call, @NonNull Response<Problems> response) {
+                progressLayout.setVisibility(View.GONE);
+
+                Log.e(TAG,"Got Response");
+                if (response.body() != null) {
+
+                    //problemArrayList = new ArrayList<>(response.body().getProblems());
+                    Log.e(TAG, "RESPONSE FROM API" + response.body());
+//                    refreshRecycler();
+
+                    Log.e(TAG,"Problems Found");
+                }else{
+                    Log.e(TAG,"No Problems Found");
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Problems> call, @NonNull Throwable t) {
+
+                progressLayout.setVisibility(View.GONE);
+                Log.e(TAG, "ERROR WITH NETWORK REQUEST:" + t.getMessage());
+                Toast.makeText(getActivity(),
+                        "Error: "+t.getMessage(),
+                        Toast.LENGTH_LONG).show();
+            }
+        });
 
     }
 
