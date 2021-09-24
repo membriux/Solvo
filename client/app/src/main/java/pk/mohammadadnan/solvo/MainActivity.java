@@ -8,6 +8,10 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.snackbar.Snackbar;
+import com.novoda.merlin.Connectable;
+import com.novoda.merlin.Disconnectable;
+import com.novoda.merlin.Merlin;
 
 import java.util.List;
 
@@ -33,7 +37,11 @@ public class MainActivity extends AppCompatActivity implements UIStateChangeList
     private List<Problem> dataList;
     private Context context;
 
+    private boolean isJustCreated = true;
+
     private GetDataService service;
+
+    protected Merlin merlin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +56,41 @@ public class MainActivity extends AppCompatActivity implements UIStateChangeList
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupWithNavController(navView, navController);
 
+        //Library for checking network state
+        merlin = new Merlin
+                .Builder()
+                .withConnectableCallbacks()
+                .withDisconnectableCallbacks()
+                .build(getApplicationContext());
+        merlin.registerConnectable(new Connectable() {
+            @Override
+            public void onConnect() {
+                if(!isJustCreated){
+                    Snackbar snackbar = Snackbar.make(
+                            findViewById(android.R.id.content),
+                            "You're connected again!",
+                            Snackbar.LENGTH_SHORT
+                    );
+                    snackbar.setAnchorView(navView);
+                    snackbar.show();
+                }else{
+                    isJustCreated = false;
+                }
+            }
+        });
+        merlin.registerDisconnectable(new Disconnectable() {
+            @Override
+            public void onDisconnect() {
+                Snackbar snackbar = Snackbar.make(
+                        findViewById(android.R.id.content),
+                        "Internet connection lost...",
+                        Snackbar.LENGTH_LONG
+                );
+                snackbar.setAnchorView(navView);
+                snackbar.show();
+            }
+        });
+
         /* ––––- ––––– */
         /* ––––- API Client ––––– */
         /* ––––- ––––– */
@@ -55,6 +98,18 @@ public class MainActivity extends AppCompatActivity implements UIStateChangeList
         service = APIClient.getRetrofitInstance().create(GetDataService.class);
         getAllProblemsRequest();
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        merlin.bind();
+    }
+
+    @Override
+    protected void onPause() {
+        merlin.unbind();
+        super.onPause();
     }
 
     @Override
