@@ -7,19 +7,53 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="pk.mohammadadnan.solvo.ui.HomeFragment"
+        android:name="pk.mohammadadnan.solvo.ui.fragments.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/home_to_problem"
+            app:destination="@id/problemFragment" />
+        <action
+            android:id="@+id/home_to_add"
+            app:destination="@id/addProblemFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_interests"
-        android:name="pk.mohammadadnan.solvo.ui.InterestsFragment"
+        android:name="pk.mohammadadnan.solvo.ui.fragments.InterestsFragment"
         android:label="@string/title_interests"
         tools:layout="@layout/fragment_interests" />
 
     <fragment
         android:id="@+id/navigation_investathons"
-        android:name="pk.mohammadadnan.solvo.ui.InvestathonsFragment"
+        android:name="pk.mohammadadnan.solvo.ui.fragments.InvestathonsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_investathons" />
+    <fragment
+        android:id="@+id/addProblemFragment"
+        android:name="pk.mohammadadnan.solvo.ui.fragments.AddProblemFragment"
+        android:label="fragment_add_problem"
+        tools:layout="@layout/fragment_add_problem" >
+        <argument
+            android:name="isAddProblem"
+            app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/problemFragment"
+        android:name="pk.mohammadadnan.solvo.ui.fragments.ProblemFragment"
+        android:label="fragment_problem"
+        tools:layout="@layout/fragment_problem" >
+        <action
+            android:id="@+id/problem_to_add"
+            app:destination="@id/addProblemFragment" />
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="details"
+            app:argType="string" />
+    </fragment>
 </navigation>
