@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,6 +26,7 @@ public class HomeFragment extends Fragment implements ProblemsAdapter.ClickListe
 
     FloatingActionButton fab;
     RecyclerView recyclerView;
+    ConstraintLayout progressLayout;
 
     private UIStateChangeListener mUIStateChangeListener;
 
@@ -38,6 +40,7 @@ public class HomeFragment extends Fragment implements ProblemsAdapter.ClickListe
 
         fab = root.findViewById(R.id.fab_home);
         recyclerView = root.findViewById(R.id.recycler_home);
+        progressLayout = root.findViewById(R.id.progress_layout_home);
 
         fab.setOnClickListener(view -> {
             HomeFragmentDirections.HomeToAdd action= HomeFragmentDirections.homeToAdd(true);
@@ -48,28 +51,32 @@ public class HomeFragment extends Fragment implements ProblemsAdapter.ClickListe
                 1,
                 1,
                 "Problem#1",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov"
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
+                System.currentTimeMillis()
         ));
 
         problemArrayList.add(new Problem(
                 2,
                 2,
                 "Problem#2",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov"
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
+                System.currentTimeMillis()
         ));
 
         problemArrayList.add(new Problem(
                 3,
                 3,
                 "Problem#3",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov"
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
+                System.currentTimeMillis()
         ));
 
         problemArrayList.add(new Problem(
                 4,
                 4,
                 "Problem#4",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov"
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
+                System.currentTimeMillis()
         ));
 
         adapter = new ProblemsAdapter(getActivity(),problemArrayList);

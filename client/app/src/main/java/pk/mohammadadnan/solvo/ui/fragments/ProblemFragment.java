@@ -63,7 +63,7 @@ public class ProblemFragment extends Fragment implements ProblemsAdapter.Interes
                 1,
                 "Solution#1",
                 "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
-                "date1"
+                System.currentTimeMillis()
         ));
 
         problemArrayList.add(new Problem(
@@ -71,7 +71,7 @@ public class ProblemFragment extends Fragment implements ProblemsAdapter.Interes
                 2,
                 "Solution#2",
                 "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
-                "date1"
+                System.currentTimeMillis()
         ));
 
         problemArrayList.add(new Problem(
@@ -79,7 +79,7 @@ public class ProblemFragment extends Fragment implements ProblemsAdapter.Interes
                 3,
                 "Solution#3",
                 "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
-                "date1"
+                System.currentTimeMillis()
         ));
 
         problemArrayList.add(new Problem(
@@ -87,7 +87,7 @@ public class ProblemFragment extends Fragment implements ProblemsAdapter.Interes
                 4,
                 "Solution#4",
                 "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
-                "date1"
+                System.currentTimeMillis()
         ));
 
         adapter = new ProblemsAdapter(getActivity(),problemArrayList);

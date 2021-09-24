@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,6 +24,7 @@ import pk.mohammadadnan.solvo.ui.adapters.ProblemsAdapter;
 public class InterestsFragment extends Fragment implements ProblemsAdapter.ClickListener, ProblemsAdapter.InterestListener{
 
     private RecyclerView recyclerView;
+    ConstraintLayout progressLayout;
 
     private UIStateChangeListener mUIStateChangeListener;
 
@@ -35,33 +37,38 @@ public class InterestsFragment extends Fragment implements ProblemsAdapter.Click
         View root = inflater.inflate(R.layout.fragment_interests, container, false);
 
         recyclerView = root.findViewById(R.id.recycler_interests);
+        progressLayout = root.findViewById(R.id.progress_layout_interests);
 
         interestsArrayList.add(new Problem(
                 1,
                 1,
                 "Interest#1",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov"
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
+                System.currentTimeMillis()
         ));
 
         interestsArrayList.add(new Problem(
                 2,
                 2,
                 "Interest#2",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov"
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
+                System.currentTimeMillis()
         ));
 
         interestsArrayList.add(new Problem(
                 3,
                 3,
                 "Interest#3",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov"
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
+                System.currentTimeMillis()
         ));
 
         interestsArrayList.add(new Problem(
                 4,
                 4,
                 "Interest#4",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov"
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
+                System.currentTimeMillis()
         ));
 
         adapter = new ProblemsAdapter(getActivity(), interestsArrayList);
