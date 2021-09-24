@@ -21,7 +21,7 @@ class ProblemBase(BaseModel):
 
 class ProblemCreate(ProblemBase):
     pass
-class Problem(ProblemBase):
+class Problem(ProblemCreate):
     id: int 
     owner_id: int
     createdAt: datetime
