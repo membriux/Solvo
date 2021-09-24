@@ -12,7 +12,7 @@ public interface GetDataService {
     @GET("/photos")
     Call<List<Post>> getAllPhotos();
 
-    @GET("/questions")
+    @GET("/problems")
     Call<List<Problem>> getAllProblems();
 
 }
