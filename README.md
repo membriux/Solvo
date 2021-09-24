@@ -14,9 +14,9 @@
     - [Client](#client)
     - [Web Server](#web-server)
     - [Database](#database)
-    - [Containers](#containers)
-  - [Issues Encountered](#issues-encountered)
-  - [Authors](#authors)
+    - [Containers 📦](#containers-)
+    - [Issues Encountered](#issues-encountered)
+  - [Authors 📝](#authors-)
 
 ## Setup/Installation 🏗
 
@@ -116,7 +116,7 @@ Solution
 | problem_id  | int    | id of solution's problem      |
 | owner_id    | int    | id of owner of solution       |
 
-### Containers
+### Containers 📦
 
 In our project, we containerized and isolated the API component to prevent others from running into issues with different python versions and simplify the process of running the API instance. This helped us be more efficient and productive developing in our project. Below is a table that represents the containers, networks, and dependencies of this project (from docker-compose):
 
@@ -124,14 +124,11 @@ In our project, we containerized and isolated the API component to prevent other
 | -------------- | ------------------ |
 | api            | FastAPI web server |
 
-
-## Issues Encountered
+### Issues Encountered
 
 The main issue we encountered in this project was connecting the client (Android) with the backend (FastApi). The main reason is due to being our first time experimenting with FastAPI and combining it with Android (Retrofit) together. Some other issues we encountered were with designing the database schema but after drawing and designing we were able to connect all the pieces together. 
 
-
-
-## Authors
+## Authors 📝
 
 - Dee Yeum - [**@ChefYeum**](https://github.com/ChefYeum)
 	- Database Integration
