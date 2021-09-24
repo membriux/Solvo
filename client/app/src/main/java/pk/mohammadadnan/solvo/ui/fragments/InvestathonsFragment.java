@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 import pk.mohammadadnan.solvo.R;
 import pk.mohammadadnan.solvo.UIStateChangeListener;
-import pk.mohammadadnan.solvo.models.Problem;
+import pk.mohammadadnan.solvo.models.Problems;
 import pk.mohammadadnan.solvo.ui.adapters.ProblemsAdapter;
 
 public class InvestathonsFragment extends Fragment implements ProblemsAdapter.ClickListener, ProblemsAdapter.InterestListener{
@@ -28,7 +28,7 @@ public class InvestathonsFragment extends Fragment implements ProblemsAdapter.Cl
     private UIStateChangeListener mUIStateChangeListener;
 
     private ProblemsAdapter adapter;
-    private ArrayList<Problem> investathonsArrayList = new ArrayList<>();
+    private ArrayList<Problems.Problem> investathonsArrayList = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -41,37 +41,7 @@ public class InvestathonsFragment extends Fragment implements ProblemsAdapter.Cl
 
         progressLayout.setVisibility(View.GONE);
 
-        investathonsArrayList.add(new Problem(
-                1,
-                1,
-                "Investathon#1",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
-                System.currentTimeMillis()
-        ));
-
-        investathonsArrayList.add(new Problem(
-                2,
-                2,
-                "Investathon#2",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
-                System.currentTimeMillis()
-        ));
-
-        investathonsArrayList.add(new Problem(
-                3,
-                3,
-                "Investathon#3",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
-                System.currentTimeMillis()
-        ));
-
-        investathonsArrayList.add(new Problem(
-                4,
-                4,
-                "Investathon#4",
-                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
-                System.currentTimeMillis()
-        ));
+        addDummyData();
 
         adapter = new ProblemsAdapter(getActivity(), investathonsArrayList);
         adapter.setClickListener(this);
@@ -124,5 +94,39 @@ public class InvestathonsFragment extends Fragment implements ProblemsAdapter.Cl
     @Override
     public void onInterest(View view, int position) {
 
+    }
+
+    private void addDummyData(){
+        investathonsArrayList.add(new Problems.Problem(
+                1,
+                1,
+                "Backpack with raincoat",
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
+                System.currentTimeMillis()
+        ));
+
+        investathonsArrayList.add(new Problems.Problem(
+                2,
+                2,
+                "Investathon#2",
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
+                System.currentTimeMillis()
+        ));
+
+        investathonsArrayList.add(new Problems.Problem(
+                3,
+                3,
+                "Investathon#3",
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
+                System.currentTimeMillis()
+        ));
+
+        investathonsArrayList.add(new Problems.Problem(
+                4,
+                4,
+                "Investathon#4",
+                "qwertyuiopasdfivnevinaieovnoanrioanponrpioanonriavponrineonpaenvianov",
+                System.currentTimeMillis()
+        ));
     }
 }
