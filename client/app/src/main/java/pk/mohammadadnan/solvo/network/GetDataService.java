@@ -1,6 +1,5 @@
 package pk.mohammadadnan.solvo.network;
 
-import pk.mohammadadnan.solvo.models.Post;
 import java.util.List;
 
 import pk.mohammadadnan.solvo.models.Problem;
