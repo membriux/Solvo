@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 import pk.mohammadadnan.solvo.R;
 import pk.mohammadadnan.solvo.UIStateChangeListener;
+import pk.mohammadadnan.solvo.models.Problem;
 import pk.mohammadadnan.solvo.models.Problems;
 import pk.mohammadadnan.solvo.ui.adapters.ProblemsAdapter;
 
@@ -29,7 +30,7 @@ public class InterestsFragment extends Fragment implements ProblemsAdapter.Click
     private UIStateChangeListener mUIStateChangeListener;
 
     private ProblemsAdapter adapter;
-    private ArrayList<Problems.Problem> interestsArrayList = new ArrayList<>();
+    private ArrayList<Problem> interestsArrayList = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class InterestsFragment extends Fragment implements ProblemsAdapter.Click
 
         progressLayout.setVisibility(View.GONE);
 
-        interestsArrayList.add(new Problems.Problem(
+        interestsArrayList.add(new Problem(
                 1,
                 1,
                 "Interest#1",
@@ -50,7 +51,7 @@ public class InterestsFragment extends Fragment implements ProblemsAdapter.Click
                 System.currentTimeMillis()
         ));
 
-        interestsArrayList.add(new Problems.Problem(
+        interestsArrayList.add(new Problem(
                 2,
                 2,
                 "Interest#2",
@@ -58,7 +59,7 @@ public class InterestsFragment extends Fragment implements ProblemsAdapter.Click
                 System.currentTimeMillis()
         ));
 
-        interestsArrayList.add(new Problems.Problem(
+        interestsArrayList.add(new Problem(
                 3,
                 3,
                 "Interest#3",
@@ -66,7 +67,7 @@ public class InterestsFragment extends Fragment implements ProblemsAdapter.Click
                 System.currentTimeMillis()
         ));
 
-        interestsArrayList.add(new Problems.Problem(
+        interestsArrayList.add(new Problem(
                 4,
                 4,
                 "Interest#4",

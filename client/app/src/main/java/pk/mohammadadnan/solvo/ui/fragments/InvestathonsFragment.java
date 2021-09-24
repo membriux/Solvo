@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 import pk.mohammadadnan.solvo.R;
 import pk.mohammadadnan.solvo.UIStateChangeListener;
+import pk.mohammadadnan.solvo.models.Problem;
 import pk.mohammadadnan.solvo.models.Problems;
 import pk.mohammadadnan.solvo.ui.adapters.ProblemsAdapter;
 
@@ -28,7 +29,7 @@ public class InvestathonsFragment extends Fragment implements ProblemsAdapter.Cl
     private UIStateChangeListener mUIStateChangeListener;
 
     private ProblemsAdapter adapter;
-    private ArrayList<Problems.Problem> investathonsArrayList = new ArrayList<>();
+    private ArrayList<Problem> investathonsArrayList = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -97,7 +98,7 @@ public class InvestathonsFragment extends Fragment implements ProblemsAdapter.Cl
     }
 
     private void addDummyData(){
-        investathonsArrayList.add(new Problems.Problem(
+        investathonsArrayList.add(new Problem(
                 1,
                 1,
                 "Backpack with raincoat",
@@ -105,7 +106,7 @@ public class InvestathonsFragment extends Fragment implements ProblemsAdapter.Cl
                 System.currentTimeMillis()
         ));
 
-        investathonsArrayList.add(new Problems.Problem(
+        investathonsArrayList.add(new Problem(
                 2,
                 2,
                 "Investathon#2",
@@ -113,7 +114,7 @@ public class InvestathonsFragment extends Fragment implements ProblemsAdapter.Cl
                 System.currentTimeMillis()
         ));
 
-        investathonsArrayList.add(new Problems.Problem(
+        investathonsArrayList.add(new Problem(
                 3,
                 3,
                 "Investathon#3",
@@ -121,7 +122,7 @@ public class InvestathonsFragment extends Fragment implements ProblemsAdapter.Cl
                 System.currentTimeMillis()
         ));
 
-        investathonsArrayList.add(new Problems.Problem(
+        investathonsArrayList.add(new Problem(
                 4,
                 4,
                 "Investathon#4",

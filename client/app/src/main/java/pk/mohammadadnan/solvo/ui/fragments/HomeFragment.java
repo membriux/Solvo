@@ -23,7 +23,9 @@ import java.util.List;
 import pk.mohammadadnan.solvo.MainActivity;
 import pk.mohammadadnan.solvo.R;
 import pk.mohammadadnan.solvo.UIStateChangeListener;
+import pk.mohammadadnan.solvo.models.Problem;
 import pk.mohammadadnan.solvo.models.Problems;
+import pk.mohammadadnan.solvo.models.RetroPhoto;
 import pk.mohammadadnan.solvo.network.APIClient;
 import pk.mohammadadnan.solvo.network.GetDataService;
 import pk.mohammadadnan.solvo.ui.adapters.ProblemsAdapter;
@@ -42,7 +44,7 @@ public class HomeFragment extends Fragment implements ProblemsAdapter.ClickListe
     private UIStateChangeListener mUIStateChangeListener;
 
     private ProblemsAdapter adapter;
-    private ArrayList<Problems.Problem> problemArrayList = new ArrayList<>();
+    private ArrayList<Problem> problemArrayList = new ArrayList<>();
 
     private GetDataService service;
 
@@ -128,43 +130,58 @@ public class HomeFragment extends Fragment implements ProblemsAdapter.ClickListe
 
     private void getAllProblemsRequest(){
 
-        progressLayout.setVisibility(View.VISIBLE);
 
-        Call<Problems> call = service.getAllProblems();
-        call.enqueue(new Callback<Problems>() {
-
+        /*Create handle for the RetrofitInstance interface*/
+        GetDataService service = APIClient.getRetrofitInstance().create(GetDataService.class);
+        Call<List<RetroPhoto>> call1 = service.getAllPhotos();
+        call1.enqueue(new Callback<List<RetroPhoto>>() {
             @Override
-            public void onResponse(@NonNull Call<Problems> call, @NonNull Response<Problems> response) {
-
-                progressLayout.setVisibility(View.GONE);
-
-                Log.e(TAG,"Got Response");
-                if (response.body() != null) {
-
-                    problemArrayList = new ArrayList<>(response.body().getProblems());
-                    refreshRecycler();
-
-                    Log.e(TAG,"Problems Found");
-                }else{
-                    Log.e(TAG,"No Problems Found");
-                }
+            public void onResponse(Call<List<RetroPhoto>> call, Response<List<RetroPhoto>> response) {
+                System.out.print("RESPONSE FROM API" + response.body());
             }
 
             @Override
-            public void onFailure(@NonNull Call<Problems> call, @NonNull Throwable t) {
-
-                progressLayout.setVisibility(View.GONE);
-
-                Toast.makeText(getActivity(),
-                        "Error: "+t.getMessage(),
-                        Toast.LENGTH_LONG).show();
+            public void onFailure(Call<List<RetroPhoto>> call, Throwable t) {
+                System.out.println("Something went wrong...Please try later!");
             }
         });
+
+        progressLayout.setVisibility(View.VISIBLE);
+
+//        Call<Problems> call = service.getAllProblems();
+//        call.enqueue(new Callback<Problems>() {
+//            @Override
+//            public void onResponse(@NonNull Call<Problems> call, @NonNull Response<Problems> response) {
+//                progressLayout.setVisibility(View.GONE);
+//
+//                Log.e(TAG,"Got Response");
+//                if (response.body() != null) {
+//
+//                    //problemArrayList = new ArrayList<>(response.body().getProblems());
+//                    Log.e(TAG, "RESPONSE FROM API" + response.body());
+////                    refreshRecycler();
+//
+//                    Log.e(TAG,"Problems Found");
+//                }else{
+//                    Log.e(TAG,"No Problems Found");
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(@NonNull Call<Problems> call, @NonNull Throwable t) {
+//
+//                progressLayout.setVisibility(View.GONE);
+//                Log.e(TAG, "ERROR WITH NETWORK REQUEST:" + t.getMessage());
+//                Toast.makeText(getActivity(),
+//                        "Error: "+t.getMessage(),
+//                        Toast.LENGTH_LONG).show();
+//            }
+//        });
 
     }
 
     public void addDummyData(){
-        problemArrayList.add(new Problems.Problem(
+        problemArrayList.add(new Problem(
                 1003,
                 1,
                 "Problem#1",
@@ -172,7 +189,7 @@ public class HomeFragment extends Fragment implements ProblemsAdapter.ClickListe
                 System.currentTimeMillis()
         ));
 
-        problemArrayList.add(new Problems.Problem(
+        problemArrayList.add(new Problem(
                 450,
                 2,
                 "Problem#2",
@@ -180,7 +197,7 @@ public class HomeFragment extends Fragment implements ProblemsAdapter.ClickListe
                 System.currentTimeMillis()
         ));
 
-        problemArrayList.add(new Problems.Problem(
+        problemArrayList.add(new Problem(
                 345,
                 3,
                 "Problem#3",
@@ -188,7 +205,7 @@ public class HomeFragment extends Fragment implements ProblemsAdapter.ClickListe
                 System.currentTimeMillis()
         ));
 
-        problemArrayList.add(new Problems.Problem(
+        problemArrayList.add(new Problem(
                 45,
                 4,
                 "Problem#4",

@@ -13,9 +13,9 @@ public class User {
     private String email;
 
     @SerializedName("problems")
-    private List<Problems.Problem> problems;
+    private List<Problem> problems;
 
-    public User(String email, Integer id, List<Problems.Problem> problems) {
+    public User(String email, Integer id, List<Problem> problems) {
         this.email = email;
         this.id = id;
         this.problems = problems;
@@ -37,11 +37,11 @@ public class User {
         this.email = email;
     }
 
-    public List<Problems.Problem> getProblems() {
+    public List<Problem> getProblems() {
         return problems;
     }
 
-    public void setProblems(List<Problems.Problem> problems) {
+    public void setProblems(List<Problem> problems) {
         this.problems = problems;
     }
 

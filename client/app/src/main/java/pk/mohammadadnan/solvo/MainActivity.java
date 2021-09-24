@@ -2,6 +2,7 @@ package pk.mohammadadnan.solvo;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -22,10 +23,17 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import pk.mohammadadnan.solvo.models.Problems;
+import pk.mohammadadnan.solvo.models.RetroPhoto;
+import pk.mohammadadnan.solvo.network.APIClient;
+import pk.mohammadadnan.solvo.network.GetDataService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MainActivity extends AppCompatActivity implements UIStateChangeListener {
 
+    public static final String TAG = "";
     public static BottomNavigationView navView;
     private ConstraintLayout searchTopBar,returnTopBar;
     private ImageButton returnBtn;
@@ -81,6 +89,9 @@ public class MainActivity extends AppCompatActivity implements UIStateChangeList
                 snackbar.show();
             }
         });
+
+
+
 
     }
 
