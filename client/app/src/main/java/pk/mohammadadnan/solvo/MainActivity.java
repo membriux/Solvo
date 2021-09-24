@@ -21,21 +21,14 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
-import pk.mohammadadnan.solvo.models.Problem;
-import pk.mohammadadnan.solvo.network.APIClient;
-import pk.mohammadadnan.solvo.network.GetDataService;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import pk.mohammadadnan.solvo.models.Problems;
+
 
 public class MainActivity extends AppCompatActivity implements UIStateChangeListener {
 
     public static BottomNavigationView navView;
     private ConstraintLayout searchTopBar,returnTopBar;
     private ImageButton returnBtn;
-
-    private List<Problem> dataList;
-    private Context context;
 
     private boolean isJustCreated = true;
 

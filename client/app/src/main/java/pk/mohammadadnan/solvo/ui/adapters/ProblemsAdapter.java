@@ -14,18 +14,18 @@ import java.util.ArrayList;
 
 import pk.mohammadadnan.solvo.R;
 import pk.mohammadadnan.solvo.Utils;
-import pk.mohammadadnan.solvo.models.Problem;
+import pk.mohammadadnan.solvo.models.Problems;
 
 
 public class ProblemsAdapter extends RecyclerView.Adapter<ProblemsAdapter.ViewHolder> {
 
-    private ArrayList<Problem> mData;
+    private ArrayList<Problems.Problem> mData;
     private LayoutInflater mInflater;
     private ClickListener mClickListener;
     private InterestListener mInterestListener;
 
     // data is passed into the constructor
-    public ProblemsAdapter(Context context, ArrayList<Problem> data) {
+    public ProblemsAdapter(Context context, ArrayList<Problems.Problem> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -53,7 +53,7 @@ public class ProblemsAdapter extends RecyclerView.Adapter<ProblemsAdapter.ViewHo
         return mData.size();
     }
 
-    public void setValues(ArrayList<Problem> mData){
+    public void setValues(ArrayList<Problems.Problem> mData){
         this.mData = mData;
     }
 
