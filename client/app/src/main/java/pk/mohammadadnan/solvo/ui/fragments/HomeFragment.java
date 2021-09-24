@@ -37,7 +37,7 @@ public class HomeFragment extends Fragment implements ProblemsAdapter.ClickListe
 
     FloatingActionButton fab;
     RecyclerView recyclerView;
-    ConstraintLayout progressLayout;
+    ConstraintLayout progressLayout,emptyLayout;
 
     private UIStateChangeListener mUIStateChangeListener;
 
@@ -54,6 +54,7 @@ public class HomeFragment extends Fragment implements ProblemsAdapter.ClickListe
         fab = root.findViewById(R.id.fab_home);
         recyclerView = root.findViewById(R.id.recycler_home);
         progressLayout = root.findViewById(R.id.progress_layout_home);
+        emptyLayout = root.findViewById(R.id.empty_layout_home);
 
         fab.setOnClickListener(view -> {
             HomeFragmentDirections.HomeToAdd action= HomeFragmentDirections.homeToAdd(true);
@@ -63,6 +64,7 @@ public class HomeFragment extends Fragment implements ProblemsAdapter.ClickListe
         refreshRecycler();
 
         progressLayout.setVisibility(View.GONE);
+        emptyLayout.setVisibility(View.VISIBLE);
 
         service = APIClient.getRetrofitInstance().create(GetDataService.class);
 
@@ -111,6 +113,11 @@ public class HomeFragment extends Fragment implements ProblemsAdapter.ClickListe
     }
 
     private void refreshRecycler(){
+        if(problemArrayList.size() != 0){
+            emptyLayout.setVisibility(View.GONE);
+        }else{
+            emptyLayout.setVisibility(View.VISIBLE);
+        }
         adapter = new ProblemsAdapter(getActivity(),problemArrayList);
         adapter.setClickListener(HomeFragment.this);
         adapter.setInterestListener(HomeFragment.this);
