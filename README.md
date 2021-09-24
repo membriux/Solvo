@@ -1,4 +1,4 @@
-##### tags: `android` `FastAPI` `docker` `containers` `solutions`
+##### tags: `android` `FastAPI` `java` `python` `docker` `containers` `solutions`
 
 # Solvo
 
